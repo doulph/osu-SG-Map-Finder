@@ -18,11 +18,11 @@ API_KEY=<paste-the-api-key-here>
 ```
 
 ## Using the Code
-Under main.py, edit the starting date for checking (as a string), e.g.
+Under main.py, edit the starting date for checking, e.g.
 ```
-start_year = '2023'
-start_month = '01'
-start_day = '01'
+start_year = 2023
+start_month = 4
+start_day = 1
 ```
 
 Optionally, it is also possible to filter the types of maps using an array. Currently, ranked, approved and loved maps are returned:
@@ -39,8 +39,6 @@ The code uses a JSON file containing a list of osu! mappers (names and ids). The
 - the mapper id of the mapset owner is from SG
 - the mapset tags contain any SG mapper names stored in the JSON file
 
-If the mapper id of the mapset owner is not found (i.e. new mapper), they will be automatically added to the JSON file.
+New mappers with their first ranked mapsets will be automatically added to the JSON file. However, any new SG mapper who has a GD but was not already in the JSON file will not be added, as GD names in tags are not checked.
 
-Note that if there are new SG mappers with a ranked GD but no ranked mapsets, they will not be found as names in tags are not checked and saved into the JSON file. Such mapsets would only be found if their names were already in the JSON file.
-
-The maximum number of maps returned per API call is 500, around 3-10 SG mapsets per run.
+The maximum number of maps returned per API call is 500, or about 150 mapsets per run. If the repeat flag in check() is set to true, the API will be called multiple times up to the latest map.
